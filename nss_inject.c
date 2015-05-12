@@ -34,8 +34,6 @@
 #include <string.h>
 #include <errno.h>
 
-#include "util.h"
-
 /**
  * Default the delay to 30 seconds, but allow the sentinal file to define
  * an alternative delay.
@@ -50,8 +48,9 @@ inject( char *name ) {
     sprintf( buffer, "/tmp/inject.%s", name );
     sentinal = fopen( buffer, "r" );
     if ( sentinal != NULL ) {
-        fscanf( sentinal, "%ld.%09ld", &delay.tv_sec, &delay.tv_nsec );
+        int assigned = fscanf( sentinal, "%ld.%09ld", &delay.tv_sec, &delay.tv_nsec );
         fclose( sentinal );
+        if ( assigned != 2 ) return NSS_STATUS_NOTFOUND;
         enabled = 1;
     }
 
