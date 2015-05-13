@@ -35,6 +35,16 @@
 #include <errno.h>
 
 /**
+ * Need to add my notes on the semantics of these values.
+ *
+ * NSS_STATUS_TRYAGAIN - 
+ * NSS_STATUS_UNAVAIL  - 
+ * NSS_STATUS_NOTFOUND - 
+ * NSS_STATUS_SUCCESS  - 
+ * NSS_STATUS_RETURN   - 
+ */
+
+/**
  * Default the delay to 30 seconds, but allow the sentinal file to define
  * an alternative delay.
  */
